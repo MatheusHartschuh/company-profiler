@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+# Company Profile Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application that generates a company profile based on the company's website. The application utilizes GPT (OpenAI API) to generate relevant information, providing a quick way to draft a professional profile of any company.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Company Profile Generation**: Enter a company website and generate a structured JSON profile including:
+  - Company Name
+  - Company Description
+  - Service Line(s)
+  - Tier 1 and Tier 2 Keywords
+  - Point of Contact (POC)
+  - Emails
 
-## Expanding the ESLint configuration
+- **Editable Profile**: After generation, all fields are editable directly in the interface.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Service Lines Handling**: Allows creation of multiple service lines manually. The system is also designed to support GPT-generated service lines, with user flexibility to adjust them.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Local Storage Integration (Custom Feature)**:
+    - You can save profiles locally in your browser.
+    - Saved profiles are accessible via a dedicated modal.
+    - Up to 5 profiles can be saved. To delete any of them from local storage, click on the X icon.
+    - Load, edit, or regenerate profiles without re-entering the website link.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Notes on GPT Integration
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+⚠️ **Disclaimer**: Currently, the application is using **mock data** instead of actual GPT API calls because my OpenAI API credits have temporarily expired. 
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+However, the codebase includes a fully implemented GPT integration layer within the `services` folder. This can be easily re-enabled by:
+- Adding your OpenAI API Key to the environment variables.
+- Switching from mock functions to the actual GPT functions in the respective service files.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Mock Data Usage
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Application tests can be made using mock data.
+
+### Available Mocks:
+- **Solar Company Example**:
+https://simplesolar.com
+
+- **Cybersecurity Company Example**: 
+https://techinnovators.com
+
+- **Generic IT Company Example**:
+https://futureent.com
+
+
+You can paste these links into the company website field to quickly generate profiles for testing purposes.

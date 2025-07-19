@@ -24,8 +24,8 @@ export const saveProfile = (profile: any): { success: boolean; message: string }
         return { success: false, message: 'A profile with this company name already exists.' };
     }
 
-    if (profiles.length >= 3) {
-        return { success: false, message: 'Maximum of 3 saved profiles reached.' };
+    if (profiles.length >= 5) {
+        return { success: false, message: 'Maximum of 5 saved profiles reached.' };
     }
 
     profiles.push(profile);
