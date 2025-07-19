@@ -4,13 +4,14 @@ import { mockCompanyProfiles } from '../../mock/companyProfiles';
 import { ProfileCard } from '../../components/ProfileCard';
 import { SavedProfilesModal } from '../SavedProfilesModal/index.tsx';
 import { getSavedProfiles } from '../../utils/localStorageUtils';
+import { useMock as useMockConfig } from '../../config';
 import * as styles from './style';
 
 export const Main = () => {
     const [website, setWebsite] = useState('');
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
-    const [useMock, setUseMock] = useState(true);
+    const [useMock, setUseMock] = useState(useMockConfig);
     const [modalOpen, setModalOpen] = useState(false);
     const [savedProfiles, setSavedProfiles] = useState(() => getSavedProfiles());
 
@@ -56,6 +57,15 @@ export const Main = () => {
                     You can also edit and update the generated information and add points of contact and emails manually.
                     Please enter the full website URL (including https://) and click the button "Generate Profile" to get started!
                 </p>
+
+                <label style={{ marginBottom: 15 }}>
+                    <input
+                        type="checkbox"
+                        checked={useMock}
+                        onChange={(e) => setUseMock(e.target.checked)}
+                    />
+                    Use Mock Data
+                </label>
 
                 <div style={styles.inputContainer}>
                     <input

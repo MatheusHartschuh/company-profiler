@@ -31,6 +31,16 @@ export const mockCompanyProfiles: CompanyProfile[] = [
     poc: "",
   },
   {
+    website: "https://greenbuildco.com",
+    company_name: "GreenBuild Co.",
+    service_line: ["Sustainable Construction", "Green Architecture Consulting", "Energy Efficiency Audits"],
+    company_description: "GreenBuild Co. specializes in eco-friendly construction solutions and consulting services focused on sustainability and energy efficiency.",
+    tier1_keywords: ["sustainable construction", "green building", "energy efficiency"],
+    tier2_keywords: ["LEED certification", "eco-friendly materials", "carbon footprint reduction"],
+    emails: [],
+    poc: "",
+  },
+  {
     website: "https://futureent.com",
     company_name: "Future Enterprises",
     service_line: [],
