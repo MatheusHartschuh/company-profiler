@@ -37,10 +37,6 @@ export const Main = () => {
         setModalOpen(false);
     };
 
-    const refreshSavedProfiles = () => {
-        setSavedProfiles(getSavedProfiles());
-    };
-
     return (
         <div style={styles.outerContainer}>
             <div style={styles.container}>
@@ -79,10 +75,8 @@ export const Main = () => {
                 {profile && (
                     <ProfileCard
                         profile={profile}
-                        onProfileChange={(updated) => {
-                            setProfile(updated);
-                            refreshSavedProfiles();
-                        }}
+                        onProfileChange={(updated) => setProfile(updated)}
+                        onProfileSaved={() => setSavedProfiles(getSavedProfiles())}
                     />
                 )}
 
@@ -91,6 +85,7 @@ export const Main = () => {
                     onClose={() => setModalOpen(false)}
                     profiles={savedProfiles}
                     onSelectProfile={handleSelectSavedProfile}
+                    onProfileRemoved={(updatedProfiles) => setSavedProfiles(updatedProfiles)}
                 />
             </div>
         </div>

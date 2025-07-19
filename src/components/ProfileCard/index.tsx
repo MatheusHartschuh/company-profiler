@@ -15,9 +15,10 @@ interface CompanyProfile {
 interface ProfileCardProps {
     profile: CompanyProfile;
     onProfileChange: (updatedProfile: CompanyProfile) => void;
+    onProfileSaved?: () => void;
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onProfileChange }) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onProfileChange, onProfileSaved }) => {
     const [localProfile, setLocalProfile] = useState(profile);
 
     useEffect(() => {
@@ -115,6 +116,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onProfileChan
                 onClick={() => {
                     const result = saveProfile(localProfile);
                     alert(result.message);
+                    if (result.success && onProfileSaved) {
+                        onProfileSaved();
+                    }
                 }}
                 style={styles.button}
             >
