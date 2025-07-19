@@ -38,8 +38,8 @@ export const SavedProfilesModal: React.FC<SavedProfilesModalProps> = ({
   return (
     <div style={styles.modalOverlay}>
       <div style={styles.modalContent}>
-        <h3>Saved Profiles</h3>
-        {profiles.length === 0 && <p>No profiles saved yet.</p>}
+        <h3 style={styles.modalTitle}>Saved Profiles</h3>
+        {profiles.length === 0 && <p style={styles.noProfilesText}>No profiles saved yet.</p>}
 
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {profiles.map((profile, index) => (

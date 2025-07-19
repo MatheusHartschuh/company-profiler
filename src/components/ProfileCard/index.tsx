@@ -120,7 +120,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onProfileChan
                         onProfileSaved();
                     }
                 }}
-                style={styles.button}
+                style={styles.saveButton}
             >
                 Save Profile
             </button>

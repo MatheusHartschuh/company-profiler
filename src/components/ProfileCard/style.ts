@@ -76,3 +76,18 @@ export const buttonRemove = {
 export const heading = {
     marginBottom: 20,
 };
+
+export const saveButton = {
+  marginTop: '20px',
+  width: '100%',
+  padding: '15px 30px',
+  backgroundColor: colors.buttonColorSave,
+  color: 'white',
+  border: 'none',
+  borderRadius: '6px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  alignSelf: 'center',
+  display: 'block',
+};
+

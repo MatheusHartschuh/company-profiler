@@ -1,3 +1,13 @@
+import { colors } from '../../styles/theme';
+
+export const modalTitle = {
+  marginBottom: '20px',
+};
+
+export const noProfilesText = {
+  marginBottom: '20px',
+};
+
 export const modalOverlay = {
   position: 'fixed' as const,
   top: 0,
@@ -26,7 +36,11 @@ export const modalListItem = {
 };
 
 export const button = {
+  background: colors.buttonColorRemove,
   padding: '8px 16px',
   marginTop: 10,
   cursor: 'pointer',
+  border: 'none',
+  borderRadius: '4px',
+  color: colors.buttonText,
 };
