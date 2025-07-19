@@ -8,7 +8,7 @@ This is a React application that generates a company profile based on the compan
 
 However, the codebase includes a fully implemented GPT integration layer within the `services` folder. This can be re-enabled by:
 - Adding your OpenAI API Key to the environment variables.
-- Switching from mock functions to the actual GPT functions in the respective service files.
+- Switching from mock functions to the actual GPT functions with the toggle feature in the app or in the respective service files.
 
 ## Mock Data Usage
 
