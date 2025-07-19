@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { generateCompanyProfile } from './services/gptService';
 import { mockCompanyProfiles } from './mock/companyProfiles';
+import { ProfileCard } from './components/profileCard';
 
 function App() {
   const [website, setWebsite] = useState('');
@@ -14,7 +15,10 @@ function App() {
     try {
       let data;
       if (useMock) {
-        data = mockCompanyProfiles[0];
+        const foundProfile = mockCompanyProfiles.find(
+          (company) => company.website.toLowerCase() === website.toLowerCase()
+        );
+        data = foundProfile || mockCompanyProfiles[0];
       } else {
         data = await generateCompanyProfile(website);
       }
@@ -24,6 +28,10 @@ function App() {
       alert('Error generating profile');
     }
     setLoading(false);
+  };
+
+  const handleProfileChange = (updatedProfile: any) => {
+    setProfile(updatedProfile);
   };
 
   return (
@@ -41,10 +49,10 @@ function App() {
 
       {profile && (
         <div style={{ marginTop: 20 }}>
-          <h2>Company's Profile</h2>
-          <pre>{JSON.stringify(profile, null, 2)}</pre>
+          <ProfileCard profile={profile} onProfileChange={handleProfileChange} />
         </div>
       )}
+
     </div>
   );
 }
