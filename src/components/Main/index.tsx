@@ -5,52 +5,62 @@ import { ProfileCard } from '../../components/ProfileCard';
 import * as styles from './style';
 
 export const Main = () => {
-  const [website, setWebsite] = useState('');
-  const [profile, setProfile] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [useMock, setUseMock] = useState(true);
+    const [website, setWebsite] = useState('');
+    const [profile, setProfile] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
+    const [useMock, setUseMock] = useState(true);
 
-  const handleGenerate = async () => {
-    setLoading(true);
-    try {
-      let data;
-      if (useMock) {
-        const mock = mockCompanyProfiles.find((mock) => mock.website === website);
-        data = mock || mockCompanyProfiles[0];
-      } else {
-        data = await generateCompanyProfile(website);
-      }
-      setProfile(data);
-    } catch (error) {
-      console.error(error);
-      alert('Error generating profile');
-    }
-    setLoading(false);
-  };
+    const handleGenerate = async () => {
+        setLoading(true);
+        try {
+            let data;
+            if (useMock) {
+                const mock = mockCompanyProfiles.find((mock) => mock.website === website);
+                data = mock || mockCompanyProfiles[0];
+            } else {
+                data = await generateCompanyProfile(website);
+            }
+            setProfile(data);
+        } catch (error) {
+            console.error(error);
+            alert('Error generating profile');
+        }
+        setLoading(false);
+    };
 
-  return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Company Profiler</h1>
-      <div style={styles.inputContainer}>
-        <input
-          value={website}
-          onChange={(e) => setWebsite(e.target.value)}
-          placeholder="Enter the company's website"
-          style={styles.input}
-        />
-        <button
-          onClick={handleGenerate}
-          style={styles.button}
-        >
-          Generate Profile
-        </button>
-      </div>
+    return (
+        <div style={styles.outerContainer}>
+            <div style={styles.container}>
+                <h1 style={styles.heading}>Company Profiler</h1>
 
-      {loading && <p>Loading...</p>}
+                <p style={styles.paragraph}>
+                    This tool generates a basic company profile from a provided website URL.
+                    You can also edit and update the generated information and add points of contact and emails manually.
+                    Please enter the full website URL (including https://) and click the button "Generate Profile" to get started!
+                </p>
 
-      {profile && (
-        <ProfileCard profile={profile} onProfileChange={setProfile} />
-      )}
-    </div>
-  );
+
+                <div style={styles.inputContainer}>
+                    <input
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                        placeholder="Enter the company's website"
+                        style={styles.input}
+                    />
+                    <button
+                        onClick={handleGenerate}
+                        style={styles.button}
+                    >
+                        Generate Profile
+                    </button>
+                </div>
+
+                {loading && <p>Loading...</p>}
+
+                {profile && (
+                    <ProfileCard profile={profile} onProfileChange={setProfile} />
+                )}
+            </div>
+        </div>
+    );
 };
