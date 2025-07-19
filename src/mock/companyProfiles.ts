@@ -17,8 +17,8 @@ export const mockCompanyProfiles: CompanyProfile[] = [
     company_description: "Simple Solar Inc provides affordable solar energy solutions.",
     tier1_keywords: ["solar", "renewable energy", "solar panels"],
     tier2_keywords: ["clean energy", "photovoltaics"],
-    emails: ["info@simplesolar.com"],
-    poc: "Alice Johnson",
+    emails: [],
+    poc: "",
   },
   {
     website: "https://techinnovators.com",
@@ -27,8 +27,8 @@ export const mockCompanyProfiles: CompanyProfile[] = [
     company_description: "Tech Innovators Ltd offers advanced IT solutions to enterprises worldwide.",
     tier1_keywords: ["cybersecurity", "cloud computing", "software development"],
     tier2_keywords: ["IT consulting", "network security"],
-    emails: ["contact@techinnovators.com", "support@techinnovators.com"],
-    poc: "Bob Smith",
+    emails: [],
+    poc: "",
   },
   {
     website: "https://futureent.com",
@@ -37,7 +37,7 @@ export const mockCompanyProfiles: CompanyProfile[] = [
     company_description: "A startup focused on innovative tech solutions.",
     tier1_keywords: [],
     tier2_keywords: [],
-    emails: ["hello@futureent.com"],
+    emails: [],
     poc: "",
   },
 ];
