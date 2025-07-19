@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as styles from './style';
+import { saveProfile, getSavedProfiles } from '../../utils/localStorageUtils';
 
 interface CompanyProfile {
     company_name: string;
@@ -109,6 +110,17 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onProfileChan
             {renderListField('Tier 2 Keywords', 'tier2_keywords')}
             {renderListField('Emails', 'emails')}
             {renderListField('Service Lines', 'service_line')}
+
+            <button
+                onClick={() => {
+                    const result = saveProfile(localProfile);
+                    alert(result.message);
+                }}
+                style={styles.button}
+            >
+                Save Profile
+            </button>
+
         </div>
     );
 };

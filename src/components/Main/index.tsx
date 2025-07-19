@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { generateCompanyProfile } from '../../services/gptService';
 import { mockCompanyProfiles } from '../../mock/companyProfiles';
 import { ProfileCard } from '../../components/ProfileCard';
+import { SavedProfilesModal } from '../SavedProfilesModal/index.tsx';
+import { getSavedProfiles } from '../../utils/localStorageUtils'; // import do util criado
 import * as styles from './style';
 
 export const Main = () => {
@@ -9,6 +11,8 @@ export const Main = () => {
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [useMock, setUseMock] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [savedProfiles, setSavedProfiles] = useState(() => getSavedProfiles());
 
     const handleGenerate = async () => {
         setLoading(true);
@@ -28,6 +32,15 @@ export const Main = () => {
         setLoading(false);
     };
 
+    const handleSelectSavedProfile = (selectedProfile: any) => {
+        setProfile(selectedProfile);
+        setModalOpen(false);
+    };
+
+    const refreshSavedProfiles = () => {
+        setSavedProfiles(getSavedProfiles());
+    };
+
     return (
         <div style={styles.outerContainer}>
             <div style={styles.container}>
@@ -39,7 +52,6 @@ export const Main = () => {
                     Please enter the full website URL (including https://) and click the button "Generate Profile" to get started!
                 </p>
 
-
                 <div style={styles.inputContainer}>
                     <input
                         value={website}
@@ -47,19 +59,39 @@ export const Main = () => {
                         placeholder="Enter the company's website"
                         style={styles.input}
                     />
-                    <button
-                        onClick={handleGenerate}
-                        style={styles.button}
-                    >
+                    <button onClick={handleGenerate} style={styles.button}>
                         Generate Profile
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            setSavedProfiles(getSavedProfiles());
+                            setModalOpen(true);
+                        }}
+                        style={{ ...styles.button, marginLeft: 10 }}
+                    >
+                        View Saved Profiles
                     </button>
                 </div>
 
                 {loading && <p>Loading...</p>}
 
                 {profile && (
-                    <ProfileCard profile={profile} onProfileChange={setProfile} />
+                    <ProfileCard
+                        profile={profile}
+                        onProfileChange={(updated) => {
+                            setProfile(updated);
+                            refreshSavedProfiles();
+                        }}
+                    />
                 )}
+
+                <SavedProfilesModal
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                    profiles={savedProfiles}
+                    onSelectProfile={handleSelectSavedProfile}
+                />
             </div>
         </div>
     );
