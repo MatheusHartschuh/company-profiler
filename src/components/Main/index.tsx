@@ -15,12 +15,21 @@ export const Main = () => {
     const [savedProfiles, setSavedProfiles] = useState(() => getSavedProfiles());
 
     const handleGenerate = async () => {
+        if (!website.trim()) {
+            alert('Please enter a website URL');
+            return;
+        }
         setLoading(true);
         try {
             let data;
             if (useMock) {
                 const mock = mockCompanyProfiles.find((mock) => mock.website === website);
-                data = mock || mockCompanyProfiles[0];
+                if (!mock) {
+                    alert('No mock profile found for this website');
+                    setLoading(false);
+                    return;
+                }
+                data = mock;
             } else {
                 data = await generateCompanyProfile(website);
             }
