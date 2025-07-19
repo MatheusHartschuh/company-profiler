@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { generateCompanyProfile } from '../../services/gptService';
 import { mockCompanyProfiles } from '../../mock/companyProfiles';
 import { ProfileCard } from '../../components/ProfileCard';

@@ -1,4 +1,3 @@
-import React from 'react';
 import * as styles from './style';
 import type { CompanyProfile } from '../../utils/localStorageUtils';
 

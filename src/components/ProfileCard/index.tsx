@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as styles from './style';
 import { saveProfile } from '../../utils/localStorageUtils';
 import type { CompanyProfile } from '../../utils/localStorageUtils';
