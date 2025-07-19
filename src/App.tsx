@@ -1,15 +1,23 @@
 import { useState } from 'react';
 import { generateCompanyProfile } from './services/gptService';
+import { mockCompanyProfiles } from './mock/companyProfiles';
 
 function App() {
   const [website, setWebsite] = useState('');
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
+  const useMock = true;
+
   const handleGenerate = async () => {
     setLoading(true);
     try {
-      const data = await generateCompanyProfile(website);
+      let data;
+      if (useMock) {
+        data = mockCompanyProfiles[0];
+      } else {
+        data = await generateCompanyProfile(website);
+      }
       setProfile(data);
     } catch (error) {
       console.error(error);
@@ -30,7 +38,7 @@ function App() {
       <button onClick={handleGenerate}>Generate Profile</button>
 
       {loading && <p>Loading...</p>}
-      
+
       {profile && (
         <div style={{ marginTop: 20 }}>
           <h2>Company's Profile</h2>
