@@ -1,4 +1,4 @@
-export interface CompanyProfile {
+interface CompanyProfile {
   website: string;
   company_name: string;
   service_line: string[];

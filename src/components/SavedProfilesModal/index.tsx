@@ -1,17 +1,7 @@
 import React from 'react';
 import * as styles from './style';
 import { removeProfile } from '../../utils/localStorageUtils';
-
-interface CompanyProfile {
-  company_name: string;
-  company_description: string;
-  tier1_keywords: string[];
-  tier2_keywords: string[];
-  emails: string[];
-  poc: string;
-  service_line: string[];
-  website?: string;
-}
+import type { CompanyProfile } from '../../utils/localStorageUtils';
 
 interface SavedProfilesModalProps {
   isOpen: boolean;

@@ -1,4 +1,4 @@
-interface CompanyProfile {
+export interface CompanyProfile {
     company_name: string;
     company_description: string;
     tier1_keywords: string[];

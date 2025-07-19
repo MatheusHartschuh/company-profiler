@@ -3,7 +3,7 @@ import { generateCompanyProfile } from '../../services/gptService';
 import { mockCompanyProfiles } from '../../mock/companyProfiles';
 import { ProfileCard } from '../../components/ProfileCard';
 import { SavedProfilesModal } from '../SavedProfilesModal/index.tsx';
-import { getSavedProfiles } from '../../utils/localStorageUtils'; // import do util criado
+import { getSavedProfiles } from '../../utils/localStorageUtils';
 import * as styles from './style';
 
 export const Main = () => {
