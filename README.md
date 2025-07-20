@@ -2,32 +2,6 @@
 
 This is a React application that generates a company profile based on the company's website. The application utilizes GPT (OpenAI API) to generate relevant information, providing a quick way to draft a professional profile of any company.
 
-## Notes on GPT Integration
-
-⚠️ **Disclaimer**: Currently, the application is using **mock data** instead of actual GPT API calls because my OpenAI API credits have temporarily expired. 
-
-However, the codebase includes a fully implemented GPT integration layer within the `services` folder. This can be re-enabled by:
-- Adding your OpenAI API Key to the environment variables.
-- Switching from mock functions to the actual GPT functions with the toggle feature in the app or in the respective service files.
-
-## Mock Data Usage
-
-Application tests can be made using mock data.
-
-### Available Mocks:
-- **Solar Company Example**:
-https://simplesolar.com
-
-- **Cybersecurity Company Example**:
-https://techinnovators.com
-
-- **Sustainable Construction Company Example**:
-https://greenbuildco.com
-
-- **Generic IT Company Example**:
-https://futureent.com
-
-
 You can paste these links into the company website field to quickly generate profiles for testing purposes.
 
 ## Features

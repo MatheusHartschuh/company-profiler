@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { generateCompanyProfile } from '../../services/gptService';
-import { mockCompanyProfiles } from '../../mock/companyProfiles';
 import { ProfileCard } from '../../components/ProfileCard';
 import { SavedProfilesModal } from '../SavedProfilesModal/index.tsx';
 import { getSavedProfiles } from '../../utils/localStorageUtils';
-import { useMock as useMockConfig } from '../../config';
 import * as styles from './style';
 
 export const Main = () => {
     const [website, setWebsite] = useState('');
     const [profile, setProfile] = useState<any>(null);
     const [loading, setLoading] = useState(false);
-    const [useMock, setUseMock] = useState(useMockConfig);
     const [modalOpen, setModalOpen] = useState(false);
     const [savedProfiles, setSavedProfiles] = useState(() => getSavedProfiles());
 
@@ -22,18 +19,7 @@ export const Main = () => {
         }
         setLoading(true);
         try {
-            let data;
-            if (useMock) {
-                const mock = mockCompanyProfiles.find((mock) => mock.website === website);
-                if (!mock) {
-                    alert('No mock profile found for this website');
-                    setLoading(false);
-                    return;
-                }
-                data = mock;
-            } else {
-                data = await generateCompanyProfile(website);
-            }
+            const data = await generateCompanyProfile(website);
 
             const defaultProfile = {
                 company_name: '',
