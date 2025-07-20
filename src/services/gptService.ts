@@ -3,8 +3,10 @@ import axios from 'axios';
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 export const generateCompanyProfile = async (companyWebsite: string) => {
+    const cleanWebsite = companyWebsite.replace(/\/$/, '');
+
     const prompt = `You are a company profiling assistant.
-                    Given the company website: ${companyWebsite}, return ONLY a JSON with the following fields:
+                    Given the company website: ${cleanWebsite}, return ONLY a JSON with the following fields:
                     {
                     "company_name": "",
                     "company_description": "",

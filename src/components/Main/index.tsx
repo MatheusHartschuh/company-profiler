@@ -34,7 +34,19 @@ export const Main = () => {
             } else {
                 data = await generateCompanyProfile(website);
             }
-            setProfile(data);
+
+            const defaultProfile = {
+                company_name: '',
+                company_description: '',
+                poc: '',
+                emails: [],
+                tier1_keywords: [],
+                tier2_keywords: [],
+                service_line: [],
+            };
+
+            const normalizedProfile = { ...defaultProfile, ...data };
+            setProfile(normalizedProfile);
         } catch (error) {
             console.error(error);
             alert('Error generating profile');
@@ -58,15 +70,6 @@ export const Main = () => {
                     Please enter the full website URL (including https://) and click the button "Generate Profile" to get started!
                 </p>
 
-                <label style={{ marginBottom: 15 }}>
-                    <input
-                        type="checkbox"
-                        checked={useMock}
-                        onChange={(e) => setUseMock(e.target.checked)}
-                    />
-                    Use Mock Data
-                </label>
-
                 <div style={styles.inputContainer}>
                     <input
                         value={website}
@@ -89,7 +92,11 @@ export const Main = () => {
                     </button>
                 </div>
 
-                {loading && <p>Loading...</p>}
+                {loading && (
+                    <div style={styles.loadingOverlay}>
+                        <div style={styles.spinner}></div>
+                    </div>
+                )}
 
                 {profile && (
                     <ProfileCard
